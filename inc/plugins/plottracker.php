@@ -179,7 +179,7 @@ function plottracker_activate() {
 			<table width="100%" cellspacing="5" cellpadding="5">
 				<tr>
 					{$menu}
-					<td valign="top" class="trow1">
+					<td valign="top" class="trow1" valign=\"top\">
 						<br />
 						<div class="thead">{$plot[\'name\']}</div>
 						<div class="tcat">Von {$plot[\'startdate\']} bis {$plot[\'enddate\']}</div>
