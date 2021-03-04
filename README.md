@@ -28,3 +28,15 @@ werden folgende Variablen direkt nach {$prefixselect} gesetzt:
 
 - $newthread_plottracker
 - $editpost_plottracker
+
+# Demo
+<center><img src="https://snipboard.io/GukcrT.jpg" />
+
+<img src="https://snipboard.io/Kt2U0Z.jpg" />
+
+<img src="https://snipboard.io/0yDP4Z.jpg" />
+
+<img src="https://snipboard.io/3BNWpe.jpg" />
+
+<img src="https://snipboard.io/oq73x1.jpg" />
+</center>
