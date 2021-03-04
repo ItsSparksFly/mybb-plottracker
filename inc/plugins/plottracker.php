@@ -95,6 +95,10 @@ function plottracker_activate() {
 
     global $db;
 
+    include MYBB_ROOT."/inc/adminfunctions_templates.php";
+    find_replace_templatesets("newthread", "#".preg_quote('{$prefixselect}')."#i", '{$prefixselect}{$newthread_plottracker}');
+    find_replace_templatesets("editpost", "#".preg_quote('{$prefixselect}')."#i", '{$prefixselect}{$editpost_plottracker}');
+
     $plottracker = [
         'title' => 'plottracker',
         'template' => $db->escape_string('<html>
@@ -230,6 +234,10 @@ function plottracker_activate() {
 
 function plottracker_deactivate() {
     global $db;
+
+    include MYBB_ROOT."/inc/adminfunctions_templates.php";
+	find_replace_templatesets("newthread", "#".preg_quote('{$newthread_plottracker}')."#i", '', 0);
+    find_replace_templatesets("editpost", "#".preg_quote('{$editpost_plottracker}')."#i", '', 0);
     
 	$db->delete_query("templates", "title LIKE '%plottracker%'");
 }
