@@ -53,6 +53,7 @@ if($mybb->input['action'] == "view") {
 
     $query = $db->simple_select("plots_threads", "tid", "plid='{$plid}'");
     while($threadlist = $db->fetch_array($query)) {
+        $usernames = "";
         $thread = get_thread($threadlist['tid']);
         if($thread) {
             $partners = $db->fetch_field($db->simple_select("threads", "partners", "tid='{$thread['tid']}'"), "partners");

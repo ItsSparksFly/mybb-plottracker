@@ -624,27 +624,24 @@ function plottracker_newthread() {
 
     $newthread_plottracker = "";
 
-    // insert plottracker options
-    $forum['parentlist'] = ",".$forum['parentlist'].",";   
-    $selectedforums = explode(",", $mybb->settings['inplaytracker_inplay']);
-
-    foreach($selectedforums as $selected) {
-        if(preg_match("/,$selected,/i", $forum['parentlist'])) {
-            // previewing new thread?
-            if(isset($mybb->input['previewpost']) || $post_errors) {
-                $plot = $mybb->get_input('plid');
-            }
-            $query = $db->simple_select("plots", "plid, name");
-            $plot_bit = "";
-            while($plots = $db->fetch_array($query)) {
-                $selected = "";
-                if($plot == $plots['plid']) {
-                    $selected = "selected";
-                }
-                $plot_bit .= "<option value=\"{$plots['plid']}\" {$selected}>{$plots['name']}</option>";
-            }
-            eval("\$newthread_plottracker = \"".$templates->get("plottracker_newthread")."\";");
+    // insert plottracker options 
+    $inplaykategorie = $mybb->settings['inplaytracker_forum'];
+    $forum['parentlist'] = ",".$forum['parentlist'].",";
+	if(preg_match("/,$inplaykategorie,/i", $forum['parentlist'])) {
+        // previewing new thread?
+        if(isset($mybb->input['previewpost']) || $post_errors) {
+            $plot = $mybb->get_input('plid');
         }
+        $query = $db->simple_select("plots", "plid, name");
+        $plot_bit = "";
+        while($plots = $db->fetch_array($query)) {
+            $selected = "";
+            if($plot == $plots['plid']) {
+                $selected = "selected";
+            }
+            $plot_bit .= "<option value=\"{$plots['plid']}\" {$selected}>{$plots['name']}</option>";
+        }
+        eval("\$newthread_plottracker = \"".$templates->get("plottracker_newthread")."\";");
     }
 }
 
@@ -668,13 +665,9 @@ function plottracker_editpost() {
     
     $editpost_plottracker = "";
 
-    // insert inplaytracker options
-    $forum['parentlist'] = ",".$forum['parentlist'].",";   
-    $all_forums = $mybb->settings['inplaytracker_inplay'].",".$mybb->settings['inplaytracker_archive'];
-    $selectedforums = explode(",", $all_forums);
-
-    foreach($selectedforums as $selected) {
-        if(preg_match("/,$selected,/i", $forum['parentlist'])) {
+    $inplaykategorie = $mybb->settings['inplaytracker_forum'];
+    $forum['parentlist'] = ",".$forum['parentlist'].",";
+	if(preg_match("/,$inplaykategorie,/i", $forum['parentlist'])) {
         $pid = $mybb->get_input('pid', MyBB::INPUT_INT);
         if($thread['firstpost'] == $pid) {
             $query = $db->simple_select("plots_threads", "plid", "tid='{$thread['tid']}'");
@@ -698,7 +691,6 @@ function plottracker_editpost() {
                 $plot_bit .= "<option value=\"{$plots['plid']}\" {$selected}>{$plots['name']}</option>";
             }
             eval("\$editpost_plottracker = \"".$templates->get("plottracker_newthread")."\";");
-            }
         }
     }    
 }
