@@ -382,13 +382,14 @@ function plottracker_manage_plottracker()
 
                 $page->add_breadcrumb_item($lang->plottracker_manage_add_entry);
                 // Editor scripts
+                // Editor scripts
                 $page->extra_header .= <<<EOF
-                                
-                <link rel="stylesheet" href="../jscripts/sceditor/themes/mybb.css" type="text/css" media="all" />
-                <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1821"></script>
-                <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1821"></script>
-                <script type="text/javascript" src="../jscripts/sceditor/plugins/undo.js?ver=1821"></script>
-                EOF; 
+                
+<link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+<script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1821"></script>
+<script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1821"></script>
+<script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1821"></script>
+EOF;
 
                 // Build options header
                 $page->output_header($lang->plottracker_manage." - ".$lang->plottracker_manage_overview_entries);
@@ -495,13 +496,14 @@ function plottracker_manage_plottracker()
             $page->add_breadcrumb_item($lang->plottracker_manage_edit_entry);
 
             // Editor scripts
-            $page->extra_header .= <<<EOF
-                            
-            <link rel="stylesheet" href="../jscripts/sceditor/themes/mybb.css" type="text/css" media="all" />
-            <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1821"></script>
-            <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1821"></script>
-            <script type="text/javascript" src="../jscripts/sceditor/plugins/undo.js?ver=1821"></script>
-            EOF; 
+                // Editor scripts
+                $page->extra_header .= <<<EOF
+                
+<link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+<script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1821"></script>
+<script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1821"></script>
+<script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1821"></script>
+EOF;
 
             // Build options header
             $page->output_header($lang->plottracker_manage." - ".$lang->plottracker_manage_overview_entries);
