@@ -56,12 +56,11 @@ if($mybb->input['action'] == "view") {
         $usernames = "";
         $thread = get_thread($threadlist['tid']);
         if($thread) {
-            $partners = $db->fetch_field($db->simple_select("threads", "partners", "tid='{$thread['tid']}'"), "partners");
-            $partnerlist = explode(",", $partners);
-            foreach($partnerlist as $partner) {
-                $user = get_user($partner);
+            $query_2 = $db->simple_select("ipt_scenes_partners", "uid", "tid='{$thread['tid']}'");
+            while($userlist = $db->fetch_array($query_2)) {
+                $user = get_user($userlist['uid']);
                 $username = format_name($user['username'], $user['usergroup'], $user['displaygroup']);
-                $formattedname = build_profile_link($username, $partner);
+                $formattedname = build_profile_link($username, $userlist['uid']);
                 $usernames .= "&nbsp; &nbsp; {$formattedname}";
             }
             eval("\$thread_list .= \"".$templates->get("plottracker_view_threads_bit")."\";");
