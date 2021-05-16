@@ -623,23 +623,25 @@ function plottracker_newthread() {
     $newthread_plottracker = "";
 
     // insert plottracker options 
-    $inplaykategorie = $mybb->settings['inplaytracker_forum'];
+    $selectedforums = explode(",", $mybb->settings['ipt_inplay']);
     $forum['parentlist'] = ",".$forum['parentlist'].",";
-	if(preg_match("/,$inplaykategorie,/i", $forum['parentlist'])) {
-        // previewing new thread?
-        if(isset($mybb->input['previewpost']) || $post_errors) {
-            $plot = $mybb->get_input('plid');
-        }
-        $query = $db->simple_select("plots", "plid, name");
-        $plot_bit = "";
-        while($plots = $db->fetch_array($query)) {
-            $selected = "";
-            if($plot == $plots['plid']) {
-                $selected = "selected";
-            }
-            $plot_bit .= "<option value=\"{$plots['plid']}\" {$selected}>{$plots['name']}</option>";
-        }
-        eval("\$newthread_plottracker = \"".$templates->get("plottracker_newthread")."\";");
+    foreach($selectedforums as $selected) {
+		if(preg_match("/,$selected,/i", $forum['parentlist'])) {
+		// previewing new thread?
+		if(isset($mybb->input['previewpost']) || $post_errors) {
+		    $plot = $mybb->get_input('plid');
+		}
+		$query = $db->simple_select("plots", "plid, name");
+		$plot_bit = "";
+		while($plots = $db->fetch_array($query)) {
+		    $selected = "";
+		    if($plot == $plots['plid']) {
+			$selected = "selected";
+		    }
+		    $plot_bit .= "<option value=\"{$plots['plid']}\" {$selected}>{$plots['name']}</option>";
+		}
+		eval("\$newthread_plottracker = \"".$templates->get("plottracker_newthread")."\";");
+	}
     }
 }
 
